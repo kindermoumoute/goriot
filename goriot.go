@@ -1,17 +1,31 @@
 package goriot
 
+/*
+TODO :
+	Faire des structs summoner, game, etc..
+	Généralisé les liens de l'API ?
+*/
 import (
 	"net/http"
 	"io/ioutil"
 	"log"
 )
 
-var APIkey = ""
+type RiotAPI struct {
+	APIkey string
+	Region string
+}
+
+func Get(key string, region string) *RiotAPI {
+	return &RiotAPI{
+		APIkey: key,
+		Region: region
+	}
+}
 
 
-func GetInfosSummoner(summoner string) string {
-	var retour string = ""
-	res, err := http.Get("https://euw.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/" + summoner + "?api_key=" + APIkey)
+func (api *RiotAPI) GetInfosSummoner(summoner string)  (retour string) {
+	res, err := http.Get("https://" + api.Region + ".api.pvp.net/api/lol/" + api.Region + "/v1.4/" + "summoner/by-name/" + summoner + "?api_key=" + api.APIkey)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -22,7 +36,7 @@ func GetInfosSummoner(summoner string) string {
 	}
 	retour = string(infos)
 
-	return retour
+	return
 }
 
 
