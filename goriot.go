@@ -6,9 +6,9 @@ TODO :
 	Généralisé les liens de l'API ?
 */
 import (
-	"net/http"
 	"io/ioutil"
 	"log"
+	"net/http"
 )
 
 type RiotAPI struct {
@@ -19,12 +19,11 @@ type RiotAPI struct {
 func Get(key string, region string) *RiotAPI {
 	return &RiotAPI{
 		APIkey: key,
-		Region: region
+		Region: region,
 	}
 }
 
-
-func (api *RiotAPI) GetInfosSummoner(summoner string)  (retour string) {
+func (api *RiotAPI) GetInfosSummoner(summoner string) (retour string) {
 	res, err := http.Get("https://" + api.Region + ".api.pvp.net/api/lol/" + api.Region + "/v1.4/" + "summoner/by-name/" + summoner + "?api_key=" + api.APIkey)
 	if err != nil {
 		log.Fatal(err)
@@ -38,7 +37,6 @@ func (api *RiotAPI) GetInfosSummoner(summoner string)  (retour string) {
 
 	return
 }
-
 
 // func bonSummoner(summoner string) string {
 
