@@ -52,8 +52,25 @@ type Summoner struct {
 }
 
 func (api *RiotAPI) SummonerByName(names string) (summoners map[string]Summoner, err error) {
-	args := "api_key=" + api.APIkey
-	url := fmt.Sprintf("https://%v.%v/lol/%v/v1.4/summoner/by-name/%v?%v", api.Region, BaseURL, api.Region, names, args)
+	url := fmt.Sprintf("https://%v.%v/lol/%v/v1.4/summoner/by-name/%v?api_key=%v", api.Region, BaseURL, api.Region, names, api.APIkey)
 	err = api.requestAndUnmarshal(url, &summoners)
+	return
+}
+
+func (api *RiotAPI) SummonerByID(summonerID string) (summoners map[string]Summoner, err error) {
+	url := fmt.Sprintf("https://%v.%v/lol/%v/v1.4/summoner/%v?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey)
+	err = api.requestAndUnmarshal(url, &summoners)
+	return
+}
+
+func (api *RiotAPI) RunesByID(summonerID string) (runes map[string]runeBook, err error) {
+	url := fmt.Sprintf("https://%v.%v/lol/%v/v1.4/summoner/%v/runes?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey)
+	err = api.requestAndUnmarshal(url, &runes)
+	return
+}
+
+func (api *RiotAPI) MasteriesByID(summonerID string) (masteries map[string]masteryBook, err error) {
+	url := fmt.Sprintf("https://%v.%v/lol/%v/v1.4/summoner/%v/masteries?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey)
+	err = api.requestAndUnmarshal(url, &masteries)
 	return
 }

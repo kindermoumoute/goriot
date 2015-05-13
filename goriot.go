@@ -1,5 +1,7 @@
 package goriot
 
+// Thank to TrevorSStone
+// All this code is an update of github.com/TrevorSStone/goriot
 /*
 TODO :
 	Faire des structs summoner, game, etc..
