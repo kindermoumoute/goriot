@@ -13,9 +13,13 @@ type MatchSummary struct {
 	MapID                 int                   `json:"mapId"`
 	MatchCreation         int64                 `json:"matchCreation"`
 	MatchDuration         int64                 `json:"matchDuration"`
+	MatchId               int64                 `json:"matchId"`
+	MatchMode             string                `json:"matchMode"`
+	MatchType             string                `json:"matchType"`
 	MatchVersion          string                `json:"matchVersion"`
 	ParticipantIdentities []ParticipantIdentity `json:"participantIdentities"`
 	Participants          []Participant         `json:"participants"`
+	PlatformId            string                `json:"platformId"`
 	QueueType             string                `json:"queueType"`
 	Region                string                `json:"region"`
 	Season                string                `json:"season"`
