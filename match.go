@@ -1,17 +1,20 @@
 package goriot
 
-// import (
-// 	"fmt"
-// )
+import (
+	"fmt"
+)
 
 type MatchDetail struct {
 	MapID                 int                   `json:"mapId"`
 	MatchCreation         int64                 `json:"matchCreation"`
 	MatchDuration         int64                 `json:"matchDuration"`
 	MatchID               int64                 `json:"matchId"`
+	MatchMode             string                `json:"matchMode"`
+	MatchType             string                `json:"matchType"`
 	MatchVersion          string                `json:"matchVersion"`
 	ParticipantIdentities []ParticipantIdentity `json:"participantIdentities"`
 	Participants          []Participant         `json:"participants"`
+	PlatformId            string                `json:"platformId"`
 	QueueType             string                `json:"queueType"`
 	Region                string                `json:"region"`
 	Season                string                `json:"season"`
@@ -20,13 +23,16 @@ type MatchDetail struct {
 }
 
 type Participant struct {
-	ChampionID    int                 `json:"championId"`
-	ParticipantID int                 `json:"participantId"`
-	Spell1ID      int                 `json:"spell1Id"`
-	Spell2ID      int                 `json:"spell2Id"`
-	Stats         ParticipantStats    `json:"stats"`
-	TeamID        int                 `json:"teamId"`
-	Timeline      ParticipantTimeline `json:"timeline"`
+	ChampionID                int                 `json:"championId"`
+	HighestAchievedSeasonTier string              `json:"highestAchievedSeasonTier"`
+	Masteries                 []Mastery           `json:"masteries"`
+	ParticipantID             int                 `json:"participantId"`
+	Runes                     []Rune              `json:"runes"`
+	Spell1ID                  int                 `json:"spell1Id"`
+	Spell2ID                  int                 `json:"spell2Id"`
+	Stats                     ParticipantStats    `json:"stats"`
+	TeamID                    int                 `json:"teamId"`
+	Timeline                  ParticipantTimeline `json:"timeline"`
 }
 
 type ParticipantIdentity struct {
@@ -35,24 +41,31 @@ type ParticipantIdentity struct {
 }
 
 type TeamGameDetails struct {
-	Bans           []BannedChampion `json:"bans"`
-	BaronKills     int              `json:"baronKills"`
-	DragonKills    int              `json:"dragonKills"`
-	FirstBaron     bool             `json:"firstBaron"`
-	FirstBlood     bool             `json:"firstBlood"`
-	FirstDragon    bool             `json:"firstDragon"`
-	FirstInhibitor bool             `json:"firstInhibitor"`
-	FirstTower     bool             `json:"firstTower"`
-	InhibitorKills int              `json:"inhibitorKills"`
-	TeamID         int              `json:"teamId"`
-	TowerKills     int              `json:"towerKills"`
-	VilemawKills   int              `json:"vilemawKills"`
-	Winner         bool             `json:"winner"`
+	Bans                 []BannedChampion `json:"bans"`
+	BaronKills           int              `json:"baronKills"`
+	DominionVictoryScore int64            `json:"dominionVictoryScore"`
+	DragonKills          int              `json:"dragonKills"`
+	FirstBaron           bool             `json:"firstBaron"`
+	FirstBlood           bool             `json:"firstBlood"`
+	FirstDragon          bool             `json:"firstDragon"`
+	FirstInhibitor       bool             `json:"firstInhibitor"`
+	FirstTower           bool             `json:"firstTower"`
+	InhibitorKills       int              `json:"inhibitorKills"`
+	TeamID               int              `json:"teamId"`
+	TowerKills           int              `json:"towerKills"`
+	VilemawKills         int              `json:"vilemawKills"`
+	Winner               bool             `json:"winner"`
 }
 
 type Timeline struct {
 	FrameInterval int64   `json:"frameInterval"`
 	Frames        []Frame `json:"frames"`
+}
+
+//Mastery being used
+type Mastery struct {
+	MasteryId int64 `json:"masteryId"`
+	Rank      int64 `json:"rank"`
 }
 
 type ParticipantStats struct {
@@ -125,6 +138,7 @@ type ParticipantTimeline struct {
 	AncientGolemAssistsPerMinCounts ParticipantTimelineData `json:"ancientGolemAssistsPerMinCounts"`
 	AncientGolemKillsPerMinCounts   ParticipantTimelineData `json:"ancientGolemKillsPerMinCounts"`
 	AssistedLaneDeathsPerMinDeltas  ParticipantTimelineData `json:"assistedLaneDeathsPerMinDeltas"`
+	AssistedLaneKillsPerMinDeltas   ParticipantTimelineData `json:"assistedLaneKillsPerMinDeltas"`
 	BaronAssistsPerMinCounts        ParticipantTimelineData `json:"baronAssistsPerMinCounts"`
 	BaronKillsPerMinCounts          ParticipantTimelineData `json:"baronKillsPerMinCounts"`
 	CreepsPerMinDeltas              ParticipantTimelineData `json:"creepsPerMinDeltas"`
@@ -150,9 +164,15 @@ type ParticipantTimeline struct {
 	XpPerMinDeltas                  ParticipantTimelineData `json:"xpPerMinDeltas"`
 }
 
+type Rune struct {
+	Rank   int64 `json:"rank"`
+	RuneId int64 `json:"runeId"`
+}
+
 type MatchPlayer struct {
 	MatchHistoryURI string `json:"matchHistoryUri"`
 	ProfileIcon     int    `json:"profileIcon"`
+	SummonerId      int64  `json:"summonerId"`
 	SummonerName    string `json:"summonerName"`
 }
 
@@ -175,6 +195,7 @@ type ParticipantTimelineData struct {
 }
 
 type Event struct {
+	AscendedType            string   `json:"ascendedType"`
 	AssistingParticipantIDs []int    `json:"assistingParticipantIds"`
 	BuildingType            string   `json:"buildingType"`
 	CreatorID               int      `json:"creatorId"`
@@ -187,6 +208,7 @@ type Event struct {
 	LevelUpType             string   `json:"levelUpType"`
 	MonsterType             string   `json:"monsterType"`
 	ParticipantID           int      `json:"participantId"`
+	PointCaptured           string   `json:"pointCaptured"`
 	Position                Position `json:"position"`
 	SkillSlot               int      `json:"skillSlot"`
 	TeamID                  int      `json:"teamId"`
@@ -198,11 +220,13 @@ type Event struct {
 
 type ParticipantFrame struct {
 	CurrentGold         int      `json:"currentGold"`
+	DominionScore       int      `json:"dominionScore"`
 	JungleMinionsKilled int      `json:"jungleMinionsKilled"`
 	Level               int      `json:"level"`
 	MinionsKilled       int      `json:"minionsKilled"`
 	ParticipantID       int      `json:"participantId"`
 	Position            Position `json:"position"`
+	TeamScore           int      `json:"teamScore"`
 	TotalGold           int      `json:"totalGold"`
 	Xp                  int      `json:"xp"`
 }
@@ -210,4 +234,11 @@ type ParticipantFrame struct {
 type Position struct {
 	X int `json:"x"`
 	Y int `json:"y"`
+}
+
+func (api *RiotAPI) MatchByMatchID(matchID string, includeTimeline string) (match MatchDetail, err error) {
+	args := "&includeTimeline=" + includeTimeline
+	url := fmt.Sprintf("https://%v.%v/lol/%v/v2.2/match/%v?api_key=%v", api.Region, BaseURL, api.Region, matchID, api.APIkey+args)
+	err = api.requestAndUnmarshal(url, &match)
+	return
 }

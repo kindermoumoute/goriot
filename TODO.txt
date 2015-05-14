@@ -1,0 +1,16 @@
+TODO :
+- champion.go
+- currentgame.go
+- featuredgames.go
+- game.go
+- lolstaticdata.go
+- lolstatus.go
+- stats.go
+- team.go
+
+DONE :
+
+- league.go
+- match.go
+- matchhistory.go
+- summoner.go

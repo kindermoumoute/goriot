@@ -11,14 +11,14 @@ type masteryBook struct {
 
 //MasteryPage represents a League of Legends mastery page
 type MasteryPage struct {
-	Current   bool      `json:"current"`
-	ID        int64     `json:"id"`
-	Name      string    `json:"name"`
-	Masteries []Mastery `json:"masteries"`
+	Current   bool         `json:"current"`
+	ID        int64        `json:"id"`
+	Name      string       `json:"name"`
+	Masteries []MasteryDto `json:"masteries"`
 }
 
 //Mastery located inside a page
-type Mastery struct {
+type MasteryDto struct {
 	ID   int `json:"id"`
 	Rank int `json:"rank"`
 }
