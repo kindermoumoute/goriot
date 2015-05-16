@@ -8,4 +8,4 @@ Using :
 import "github.com/kindermoumoute/goriot"
 
 Example :
-myapi := goriot.Get(APIkey,"euw")
+myapi := goriot.Get(APIkey, "euw", 10, 500)
