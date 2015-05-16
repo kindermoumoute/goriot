@@ -60,8 +60,6 @@ const (
 	RANKED_TEAM_3x3 = "RANKED_TEAM_3x3"
 	//Ranked Team 5s
 	RANKED_TEAM_5x5 = "RANKED_TEAM_5x5"
-	//ErrAPIKeyNotSet is the error returned when no global API key has been set
-	//ErrAPIKeyNotSet = errors.New("goriot: API key has not been set. If you need a key visit https://developer.riotgames.com/")
 )
 
 type RiotAPI struct {
@@ -71,12 +69,15 @@ type RiotAPI struct {
 	longRateChan  rateChan
 }
 
-func Get(key string, region string) *RiotAPI {
+func Get(key string, region string, smallLimit int, longLimit int) *RiotAPI {
 	// TODO : tester la clé RIOT
-	return &RiotAPI{
+	var myapi = RiotAPI{
 		APIkey: key,
 		Region: region,
 	}
+	myapi.SetSmallRateLimit(smallLimit, 10*time.Second)
+	myapi.SetLongRateLimit(longLimit, 10*time.Minute)
+	return &myapi
 }
 
 type rateChan struct {

@@ -6,7 +6,6 @@ TODO :
 - lolstaticdata.go
 - lolstatus.go
 - stats.go
-- team.go
 
 DONE :
 
@@ -14,3 +13,4 @@ DONE :
 - match.go
 - matchhistory.go
 - summoner.go
+- team.go
