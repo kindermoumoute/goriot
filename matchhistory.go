@@ -76,7 +76,7 @@ func (api *RiotAPI) MatchHistoryBySummonerID(options ...interface{}) (playerHist
 		}
 	}
 	args := "&rankedQueues=" + queue + "&championIds=" + championids + "&beginIndex=" + begin + "&endIndex=" + end
-	url := fmt.Sprintf("https://%v.%v/lol/%v/v2.2/matchhistory/%v?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey+args)
+	url := fmt.Sprintf("https://%v.%v/api/lol/%v/v2.2/matchhistory/%v?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey+args)
 	err = api.requestAndUnmarshal(url, &playerHistory)
 	return
 }

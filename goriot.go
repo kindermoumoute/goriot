@@ -19,7 +19,8 @@ import (
 
 const (
 	//BaseURL is the base of the url used by Riot's API service
-	BaseURL = "api.pvp.net/api"
+	BaseURL = "api.pvp.net"
+
 	//BR represents the string for the Brazilian League of Legends Servers,
 	//only used as a helper to prevent typos
 	BR = "br"
@@ -50,6 +51,9 @@ const (
 	//TR represents the string for the Turkish League of Legends Servers,
 	//only used as a helper to prevent typos
 	TR = "tr"
+
+	// same
+	PBE = "pbe"
 
 	//SEASON3 is the string of "SEASON3".
 	SEASON3 = "SEASON3"

@@ -118,7 +118,7 @@ type gamesList struct {
 }
 
 func (api *RiotAPI) RecentGameBySummoner(summonerID string) (games gamesList, err error) {
-	url := fmt.Sprintf("https://%v.%v/lol/%v/v1.3/game/by-summoner/%v/recent?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey)
+	url := fmt.Sprintf("https://%v.%v/api/lol/%v/v1.3/game/by-summoner/%v/recent?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey)
 	err = api.requestAndUnmarshal(url, &games)
 	return
 }

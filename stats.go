@@ -93,14 +93,14 @@ type ChampionStats struct {
 
 func (api *RiotAPI) StatSummariesBySummoner(summonerID string, season string) (stats playerStatsSummaryList, err error) {
 	args := "&season=" + season
-	url := fmt.Sprintf("https://%v.%v/lol/%v/v1.3/stats/by-summoner/%v/summary?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey+args)
+	url := fmt.Sprintf("https://%v.%v/api/lol/%v/v1.3/stats/by-summoner/%v/summary?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey+args)
 	err = api.requestAndUnmarshal(url, &stats)
 	return
 }
 
 func (api *RiotAPI) RankedStatsBySummoner(summonerID string, season string) (stats RankedStats, err error) {
 	args := "&season=" + season
-	url := fmt.Sprintf("https://%v.%v/lol/%v/v1.3/stats/by-summoner/%v/ranked?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey+args)
+	url := fmt.Sprintf("https://%v.%v/api/lol/%v/v1.3/stats/by-summoner/%v/ranked?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey+args)
 	err = api.requestAndUnmarshal(url, &stats)
 	return
 }

@@ -238,7 +238,7 @@ type Position struct {
 
 func (api *RiotAPI) MatchByMatchID(matchID string, includeTimeline string) (match MatchDetail, err error) {
 	args := "&includeTimeline=" + includeTimeline
-	url := fmt.Sprintf("https://%v.%v/lol/%v/v2.2/match/%v?api_key=%v", api.Region, BaseURL, api.Region, matchID, api.APIkey+args)
+	url := fmt.Sprintf("https://%v.%v/api/lol/%v/v2.2/match/%v?api_key=%v", api.Region, BaseURL, api.Region, matchID, api.APIkey+args)
 	err = api.requestAndUnmarshal(url, &match)
 	return
 }

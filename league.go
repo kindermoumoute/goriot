@@ -37,39 +37,39 @@ type MiniSeries struct {
 }
 
 func (api *RiotAPI) LeagueBySummoner(summonerID string) (leagues map[string][]League, err error) {
-	url := fmt.Sprintf("https://%v.%v/lol/%v/v2.5/league/by-summoner/%v?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey)
+	url := fmt.Sprintf("https://%v.%v/api/lol/%v/v2.5/league/by-summoner/%v?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey)
 	err = api.requestAndUnmarshal(url, &leagues)
 	return
 }
 
 func (api *RiotAPI) LeagueEntryBySummoner(summonerID string) (leagues map[string][]League, err error) {
-	url := fmt.Sprintf("https://%v.%v/lol/%v/v2.5/league/by-summoner/%v/entry?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey)
+	url := fmt.Sprintf("https://%v.%v/api/lol/%v/v2.5/league/by-summoner/%v/entry?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey)
 	err = api.requestAndUnmarshal(url, &leagues)
 	return
 }
 
 func (api *RiotAPI) LeagueByTeam(teamID string) (leagues map[string][]League, err error) {
-	url := fmt.Sprintf("https://%v.%v/lol/%v/v2.5/league/by-team/%v?api_key=%v", api.Region, BaseURL, api.Region, teamID, api.APIkey)
+	url := fmt.Sprintf("https://%v.%v/api/lol/%v/v2.5/league/by-team/%v?api_key=%v", api.Region, BaseURL, api.Region, teamID, api.APIkey)
 	err = api.requestAndUnmarshal(url, &leagues)
 	return
 }
 
 func (api *RiotAPI) LeagueEntryByTeam(teamID string) (leagues map[string][]League, err error) {
-	url := fmt.Sprintf("https://%v.%v/lol/%v/v2.5/league/by-team/%v/entry?api_key=%v", api.Region, BaseURL, api.Region, teamID, api.APIkey)
+	url := fmt.Sprintf("https://%v.%v/api/lol/%v/v2.5/league/by-team/%v/entry?api_key=%v", api.Region, BaseURL, api.Region, teamID, api.APIkey)
 	err = api.requestAndUnmarshal(url, &leagues)
 	return
 }
 
 func (api *RiotAPI) LeagueByChallenger(queue string) (league League, err error) {
 	args := "&type=" + queue
-	url := fmt.Sprintf("https://%v.%v/lol/%v/v2.5/league/challenger?api_key=%v", api.Region, BaseURL, api.Region, api.APIkey+args)
+	url := fmt.Sprintf("https://%v.%v/api/lol/%v/v2.5/league/challenger?api_key=%v", api.Region, BaseURL, api.Region, api.APIkey+args)
 	err = api.requestAndUnmarshal(url, &league)
 	return
 }
 
 func (api *RiotAPI) LeagueByMaster(queue string) (league League, err error) {
 	args := "&type=" + queue
-	url := fmt.Sprintf("https://%v.%v/lol/%v/v2.5/league/master?api_key=%v", api.Region, BaseURL, api.Region, api.APIkey+args)
+	url := fmt.Sprintf("https://%v.%v/api/lol/%v/v2.5/league/master?api_key=%v", api.Region, BaseURL, api.Region, api.APIkey+args)
 	err = api.requestAndUnmarshal(url, &league)
 	return
 }

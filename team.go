@@ -60,13 +60,13 @@ type TeamStatDetail struct {
 }
 
 func (api *RiotAPI) TeamBySummonerID(summonerID string) (teams map[string][]Team, err error) {
-	url := fmt.Sprintf("https://%v.%v/lol/%v/v2.4/team/by-summoner/%v?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey)
+	url := fmt.Sprintf("https://%v.%v/api/lol/%v/v2.4/team/by-summoner/%v?api_key=%v", api.Region, BaseURL, api.Region, summonerID, api.APIkey)
 	err = api.requestAndUnmarshal(url, &teams)
 	return
 }
 
 func (api *RiotAPI) TeamByTeamID(teamID string) (teams map[string]Team, err error) {
-	url := fmt.Sprintf("https://%v.%v/lol/%v/v2.4/team/%v?api_key=%v", api.Region, BaseURL, api.Region, teamID, api.APIkey)
+	url := fmt.Sprintf("https://%v.%v/api/lol/%v/v2.4/team/%v?api_key=%v", api.Region, BaseURL, api.Region, teamID, api.APIkey)
 	err = api.requestAndUnmarshal(url, &teams)
 	return
 }
