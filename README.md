@@ -1,5 +1,6 @@
 # goriot
-go tool for riot api
+--
+    import "github.com/kindermoumoute/goriot"
 
 install :
 go get "github.com/kindermoumoute/goriot"
@@ -9,11 +10,6 @@ import "github.com/kindermoumoute/goriot"
 
 Example :
 myapi := goriot.Get(APIkey, goriot.EUW, 10, 500)
-
-# goriot
---
-    import "github.com/kindermoumoute/goriot"
-
 
 ## Usage
 
