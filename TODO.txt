@@ -5,7 +5,8 @@ TODO :
 - game.go
 - lolstaticdata.go
 - lolstatus.go
-- stats.go
+
+- Limiter le nombre d'argument de get().
 
 DONE :
 
@@ -14,3 +15,4 @@ DONE :
 - matchhistory.go
 - summoner.go
 - team.go
+- stats.go
