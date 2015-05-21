@@ -2,7 +2,6 @@ TODO :
 - champion.go
 - currentgame.go
 - featuredgames.go
-- game.go
 - lolstaticdata.go
 - lolstatus.go
 
@@ -16,3 +15,4 @@ DONE :
 - summoner.go
 - team.go
 - stats.go
+- game.go
