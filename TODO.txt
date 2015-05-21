@@ -4,6 +4,8 @@ TODO :
 
 - Limiter le nombre d'argument de get().
 
+- Tester en commentant checkRateLimiter et checkTimeTrigger
+
 DONE :
 
 - league.go
