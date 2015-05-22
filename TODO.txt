@@ -1,6 +1,5 @@
 TODO :
 - lolstaticdata.go
-- lolstatus.go
 
 - Limiter le nombre d'argument de get().
 
@@ -18,3 +17,7 @@ DONE :
 - champion.go
 - currentgame.go
 - featuredgames.go
+- lolstatus.go
+
+NB :
+godocdown "github.com/kindermoumoute/goriot" > README.md

@@ -25,13 +25,19 @@ type MatchSummary struct {
 	Season                string                `json:"season"`
 }
 
-func (api *RiotAPI) MatchHistoryBySummonerID(options ...interface{}) (playerHistory PlayerHistory, err error) {
+// Retrieve match history by summoner ID
+// Syntaxe : myapi.MatchHistoryBySummonerID(summonerID string [, championIds string [,rankedQueues string [, beginIndex string [, endIndex string]]]])
+//
+// The maximum range for begin and end index is 15. If the range is more than 15, the end index will be modified to enforce the 15 game limit. If only one of the index parameters is specified, the other will be computed accordingly.
+func (api *RiotAPI) MatchHistoryBySummonerID(options ...string) (playerHistory PlayerHistory, err error) {
 	nbargs := len(options)
 	if 1 > nbargs || nbargs > 5 {
 		err = errors.New("Incorrect number of parameters.")
 		return
 	}
-	summonerID := "23990649"
+
+	// default values
+	summonerID := "22642975"
 	championids := ""
 	queue := "RANKED_SOLO_5x5,RANKED_TEAM_3x3,RANKED_TEAM_5x5"
 	begin := ""
@@ -39,40 +45,15 @@ func (api *RiotAPI) MatchHistoryBySummonerID(options ...interface{}) (playerHist
 	for i, p := range options {
 		switch i {
 		case 0:
-			param, ok := p.(string)
-			if !ok {
-				err = errors.New("1st parameter not type string.")
-				return
-			}
-			summonerID = param
+			summonerID = p
 		case 1:
-			param, ok := p.(string)
-			if !ok {
-				err = errors.New("2nd parameter not type string.")
-				return
-			}
-			championids = param
+			championids = p
 		case 2:
-			param, ok := p.(string)
-			if !ok {
-				err = errors.New("3rd parameter not type string.")
-				return
-			}
-			queue = param
+			queue = p
 		case 3:
-			param, ok := p.(string)
-			if !ok {
-				err = errors.New("4th parameter not type string.")
-				return
-			}
-			begin = param
+			begin = p
 		case 4:
-			param, ok := p.(string)
-			if !ok {
-				err = errors.New("5th parameter not type string.")
-				return
-			}
-			end = param
+			end = p
 		}
 	}
 	args := "&rankedQueues=" + queue + "&championIds=" + championids + "&beginIndex=" + begin + "&endIndex=" + end
